@@ -71,6 +71,8 @@ bash prepare/download_smplx_files.sh
 
 
 Check the follow link to get the data:
+[wSignGen dataset google drive](https://drive.google.com/drive/folders/1coa5-DuI3foXNyKAeu28bL3tZ0J4XG9r?usp=sharing) 
+
 
 
 ### 3. Download the pretrained models
