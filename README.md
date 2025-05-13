@@ -38,7 +38,7 @@ This code was tested on `"Ubuntu 20.04.5 LTS` and requires:
 * conda3 or miniconda3
 * CUDA capable GPU (one is enough)
 
-### 1. Setup environment
+## 1. Setup environment
 
 Install ffmpeg (if not already installed):
 
@@ -63,21 +63,21 @@ bash prepare/download_smplx_files.sh
 ```
 
 
-### 2. Get data
+## 2. Get data
 
 
-Check the follow link to get the data:
-[wSignGen dataset google drive](https://drive.google.com/drive/folders/1coa5-DuI3foXNyKAeu28bL3tZ0J4XG9r?usp=sharing) 
-
-
-
-### 3. Download the pretrained models
-
-Download the model(s) you wish to use, then unzip and place them in `./save/`. 
+Check the follow link to get the dataset:
+[wSignGen dataset google drive](https://drive.google.com/drive/folders/1pncvvaxr1UXPBg6ewG225wrPoGEZbTd1?usp=sharing) 
 
 
 
-## Sign Motion Synthesis
+## 3. Download the pretrained models
+
+Download the pre-trained model, then unzip and place them in `./save/`. 
+[wSignGen diffusion pre-trained google drive](https://drive.google.com/drive/folders/1ytuImcAKg78WdnPo5NQRbbP6_ns1hooW?usp=sharing) 
+
+
+## 4. Sign Motion Synthesis
 
 
 ### Generate from test set prompts
@@ -138,7 +138,7 @@ python -m visualize.render_mesh --input_path /path/to/mp4/stick/figure/file
 
 
 
-## Train your own wSignGen
+## 5. Train your own wSignGen
 
 
 ```shell
@@ -146,7 +146,7 @@ bash run_train_mdm100.sh
 ```
 
 
-## Evaluate
+## 6. Evaluate
 
 
 ```shell
