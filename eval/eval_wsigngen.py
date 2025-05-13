@@ -1,6 +1,7 @@
 """
-Generate a large batch of image samples from a model and save them as a large
-numpy array. This can be used to produce samples for FID evaluation.
+Generate motion samples from a model;
+save them as a large numpy array;
+This can be used to produce samples for FID evaluation.
 """
 import os
 import torch
@@ -8,7 +9,7 @@ import re
 
 from utils import dist_util
 from model.cfg_sampler import ClassifierFreeSampleModel
-from data_loaders.get_data import get_dataset_loader
+from data_loaders.get_data import get_dataset_loader_evl
 from eval.a2m.tools import save_metrics
 from utils.parser_util import evaluation_parser
 from utils.fixseed import fixseed
@@ -27,15 +28,9 @@ def evaluate(args, model, diffusion, data):
 
 
     folder, ckpt_name = os.path.split(args.model_path)
-    if args.dataset == "humanact12":
-        from eval.a2m.gru_eval import evaluate
-        eval_results = evaluate(args, model, diffusion, data)
-    elif args.dataset == "uestc" :
-        from eval.a2m.stgcn_eval import evaluate_old
-        eval_results = evaluate_old(args, model, diffusion, data)
-    elif args.dataset == "wlasl30" or "wlasl_smplx100":
+
+    if args.dataset == "wlasl30" or "wlasl_smplx100":
         from eval.a2m.stgcn_eval import evaluate
-        # st()
         eval_results = evaluate(args, model, diffusion, data)
     else:
         raise NotImplementedError("This dataset is not supported.")
@@ -44,7 +39,7 @@ def evaluate(args, model, diffusion, data):
     iter = int(re.findall('\d+', ckpt_name)[0])
     scale = 1 if scale is None else scale['action'][0].item()
     scale = str(scale).replace('.', 'p')
-    metricname = "evaluation_0214_results_iter{}_samp{}_scale{}.yaml".format(iter, args.num_samples, scale)
+    metricname = "evaluation_202505_results_iter{}_samp{}_scale{}.yaml".format(iter, args.num_samples, scale)
     # metricname = "HumEva_iter{}_samp{}_scale{}.yaml".format(iter, args.num_samples, scale)
     evalpath = os.path.join(folder, metricname)
     print(f"Saving evaluation: {evalpath}")
@@ -68,7 +63,7 @@ def main():
         # args.num_seeds = 20
         args.num_seeds = 5  # use for debug
 
-    data_loader = get_dataset_loader(name=args.dataset, num_frames=60, batch_size=args.batch_size,)
+    data_loader = get_dataset_loader_evl(name=args.dataset, num_frames=60, batch_size=args.batch_size,)
 
     print("creating model and diffusion...")
     model, diffusion = create_model_and_diffusion(args, data_loader)

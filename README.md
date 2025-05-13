@@ -32,7 +32,7 @@ If you find this code useful in your research, please cite:
 
 ## Getting started
 
-This code was tested on `Ubuntu 18.04.5 LTS` and requires:
+This code was tested on `"Ubuntu 20.04.5 LTS` and requires:
 
 * Python 3.7
 * conda3 or miniconda3
@@ -87,19 +87,19 @@ Download the model(s) you wish to use, then unzip and place them in `./save/`.
 ### Generate from test set prompts
 
 ```shell
-python -m sample.generate --model_path ./save/wlasl100_ckp_02.03_text/model000400000.pt --num_samples 10 --num_repetitions 3
+python -m sample.generate --model_path ./save/wlasl100_ckpt_final/model000400000.pt --num_samples 10 --num_repetitions 3
 ```
 
 ### Generate from your text file
 
 ```shell
-python -m sample.generate --model_path ./save/wlasl100_ckp_02.03_text/model000400000.pt --input_text ./assets/sign_words.txt
+python -m sample.generate --model_path ./save/wlasl100_ckpt_final/model000400000.pt --input_text ./assets/sign_words.txt
 ```
 
 ### Generate a single prompt
 
 ```shell
-python -m sample.generate --model_path ./save/wlasl100_ckp_02.03_text/model000400000.pt --text_prompt "paper"
+python -m sample.generate --model_path ./save/wlasl100_ckpt_final/model000400000.pt --text_prompt "paper"
 ```
 
 
@@ -154,7 +154,7 @@ bash run_train_mdm100.sh
 
 
 ```shell
-python -m eval.eval_humanact12_uestc --model ./save/wlasl100_ckp_02.03_text/model000400000.pt --eval_mode full --batch_size 128 
+python -m eval.eval_wsigngen --model ./save/wlasl100_ckpt_final/model000400000.pt --eval_mode full --batch_size 128 
 ```
 
 

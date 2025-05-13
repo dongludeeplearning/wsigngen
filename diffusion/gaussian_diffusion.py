@@ -15,7 +15,7 @@ import torch as th
 from copy import deepcopy
 from diffusion.nn import mean_flat, sum_flat
 from diffusion.losses import normal_kl, discretized_gaussian_log_likelihood
-from data_loaders.humanml.scripts import motion_process
+# from data_loaders.humanml.scripts import motion_process
 
 
 def get_named_beta_schedule(schedule_name, num_diffusion_timesteps, scale_betas=1.):
@@ -1469,39 +1469,39 @@ class GaussianDiffusion:
         # print(vel_foots.shape)
         return 0
     # TODO - NOT USED YET, JUST COMMITING TO NOT DELETE THIS AND KEEP INITIAL IMPLEMENTATION, NOT DONE!
-    def velocity_consistency_loss_humanml3d(self, target, model_output):
-        # root_rot_velocity (B, seq_len, 1)
-        # root_linear_velocity (B, seq_len, 2)
-        # root_y (B, seq_len, 1)
-        # ric_data (B, seq_len, (joint_num - 1)*3) , XYZ
-        # rot_data (B, seq_len, (joint_num - 1)*6) , 6D
-        # local_velocity (B, seq_len, joint_num*3) , XYZ
-        # foot contact (B, seq_len, 4) ,
+    # def velocity_consistency_loss_humanml3d(self, target, model_output):
+    #     # root_rot_velocity (B, seq_len, 1)
+    #     # root_linear_velocity (B, seq_len, 2)
+    #     # root_y (B, seq_len, 1)
+    #     # ric_data (B, seq_len, (joint_num - 1)*3) , XYZ
+    #     # rot_data (B, seq_len, (joint_num - 1)*6) , 6D
+    #     # local_velocity (B, seq_len, joint_num*3) , XYZ
+    #     # foot contact (B, seq_len, 4) ,
 
-        target_fc = target[:, -4:, :, :]
-        root_rot_velocity = target[:, :1, :, :]
-        root_linear_velocity = target[:, 1:3, :, :]
-        root_y = target[:, 3:4, :, :]
-        ric_data = target[:, 4:67, :, :]  # 4+(3*21)=67
-        rot_data = target[:, 67:193, :, :]  # 67+(6*21)=193
-        local_velocity = target[:, 193:259, :, :]  # 193+(3*22)=259
-        contact = target[:, 259:, :, :]  # 193+(3*22)=259
+    #     target_fc = target[:, -4:, :, :]
+    #     root_rot_velocity = target[:, :1, :, :]
+    #     root_linear_velocity = target[:, 1:3, :, :]
+    #     root_y = target[:, 3:4, :, :]
+    #     ric_data = target[:, 4:67, :, :]  # 4+(3*21)=67
+    #     rot_data = target[:, 67:193, :, :]  # 67+(6*21)=193
+    #     local_velocity = target[:, 193:259, :, :]  # 193+(3*22)=259
+    #     contact = target[:, 259:, :, :]  # 193+(3*22)=259
 
-        calc_vel_from_xyz = ric_data[:, :, :, 1:] - ric_data[:, :, :, :-1]
-        velocity_from_vector = local_velocity[:, 3:, :, 1:]  # Slicing out root
-        r_rot_quat, r_pos = motion_process.recover_root_rot_pos(target.permute(0, 2, 3, 1).type(th.FloatTensor))
-        print(f'r_rot_quat: {r_rot_quat.shape}')
-        print(f'calc_vel_from_xyz: {calc_vel_from_xyz.shape}')
-        calc_vel_from_xyz = calc_vel_from_xyz.permute(0, 2, 3, 1)
-        calc_vel_from_xyz = calc_vel_from_xyz.reshape((1, 1, -1, 21, 3)).type(th.FloatTensor)
-        r_rot_quat_adapted = r_rot_quat[..., :-1, None, :].repeat((1,1,1,21,1)).to(calc_vel_from_xyz.device)
-        print(f'calc_vel_from_xyz: {calc_vel_from_xyz.shape} , {calc_vel_from_xyz.device}')
-        print(f'r_rot_quat_adapted: {r_rot_quat_adapted.shape}, {r_rot_quat_adapted.device}')
+    #     calc_vel_from_xyz = ric_data[:, :, :, 1:] - ric_data[:, :, :, :-1]
+    #     velocity_from_vector = local_velocity[:, 3:, :, 1:]  # Slicing out root
+    #     r_rot_quat, r_pos = motion_process.recover_root_rot_pos(target.permute(0, 2, 3, 1).type(th.FloatTensor))
+    #     print(f'r_rot_quat: {r_rot_quat.shape}')
+    #     print(f'calc_vel_from_xyz: {calc_vel_from_xyz.shape}')
+    #     calc_vel_from_xyz = calc_vel_from_xyz.permute(0, 2, 3, 1)
+    #     calc_vel_from_xyz = calc_vel_from_xyz.reshape((1, 1, -1, 21, 3)).type(th.FloatTensor)
+    #     r_rot_quat_adapted = r_rot_quat[..., :-1, None, :].repeat((1,1,1,21,1)).to(calc_vel_from_xyz.device)
+    #     print(f'calc_vel_from_xyz: {calc_vel_from_xyz.shape} , {calc_vel_from_xyz.device}')
+    #     print(f'r_rot_quat_adapted: {r_rot_quat_adapted.shape}, {r_rot_quat_adapted.device}')
 
-        calc_vel_from_xyz = motion_process.qrot(r_rot_quat_adapted, calc_vel_from_xyz)
-        calc_vel_from_xyz = calc_vel_from_xyz.reshape((1, 1, -1, 21 * 3))
-        calc_vel_from_xyz = calc_vel_from_xyz.permute(0, 3, 1, 2)
-        print(f'calc_vel_from_xyz: {calc_vel_from_xyz.shape} , {calc_vel_from_xyz.device}')
+    #     calc_vel_from_xyz = motion_process.qrot(r_rot_quat_adapted, calc_vel_from_xyz)
+    #     calc_vel_from_xyz = calc_vel_from_xyz.reshape((1, 1, -1, 21 * 3))
+    #     calc_vel_from_xyz = calc_vel_from_xyz.permute(0, 3, 1, 2)
+    #     print(f'calc_vel_from_xyz: {calc_vel_from_xyz.shape} , {calc_vel_from_xyz.device}')
 
         import matplotlib.pyplot as plt
         for i in range(21):

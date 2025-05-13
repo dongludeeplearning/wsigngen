@@ -33,7 +33,7 @@ def main():
     dist_util.setup_dist(args.device)
     if out_path == '':
         out_path = os.path.join(os.path.dirname(args.model_path),
-                                '0213samples_{}_{}_seed{}'.format(name, niter, args.seed))
+                                '20250513samples_{}_{}_seed{}'.format(name, niter, args.seed))
         if args.text_prompt != '':
             out_path += '_' + args.text_prompt.replace(' ', '_').replace('.', '')
         elif args.input_text != '':
@@ -134,7 +134,7 @@ def main():
             sample = data.dataset.t2m_dataset.inv_transform(sample.cpu().permute(0, 2, 3, 1)).float()
             sample = recover_from_ric(sample, n_joints)
             sample = sample.view(-1, *sample.shape[2:]).permute(0, 2, 3, 1)
-        # st()   
+   
         poserot = sample  # sample   torch.Size([5, 53, 6, 60])
         rot2xyz_pose_rep = 'xyz' if model.data_rep in ['xyz', 'hml_vec'] else model.data_rep
         rot2xyz_mask = None if rot2xyz_pose_rep == 'xyz' else model_kwargs['y']['mask'].reshape(args.batch_size, n_frames).bool()

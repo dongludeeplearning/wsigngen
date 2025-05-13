@@ -49,21 +49,21 @@ def get_dataset(name, num_frames, split='train', hml_mode='train'):
     return dataset
 
 
-# def get_dataset_loader(name, batch_size, num_frames, split='train', hml_mode='train'):
+def get_dataset_loader_evl(name, batch_size, num_frames, split='train', hml_mode='train'):
 
-#     train_dataset = get_dataset(name, num_frames, 'train', hml_mode)  # wlasl30  split train or test
-#     test_dataset = get_dataset(name, num_frames, 'test', hml_mode)
-#     datasets = {"train": train_dataset,
-#                 "test": test_dataset}
+    train_dataset = get_dataset(name, num_frames, 'train', hml_mode)  # wlasl30  split train or test
+    test_dataset = get_dataset(name, num_frames, 'test', hml_mode)
+    datasets = {"train": train_dataset,
+                "test": test_dataset}
     
-#     collate = get_collate_fn(name, hml_mode)
+    collate = get_collate_fn(name, hml_mode)
     
-#     loader = DataLoader(
-#         datasets, batch_size=batch_size, shuffle=True,
-#         num_workers=0, drop_last=True, collate_fn=collate
-#     )
+    loader = DataLoader(
+        datasets, batch_size=batch_size, shuffle=True,
+        num_workers=0, drop_last=True, collate_fn=collate
+    )
 
-#     return loader
+    return loader
 
 def get_dataset_loader(name, batch_size, num_frames, split='train', hml_mode='train'):
     train_dataset = get_dataset(name, num_frames, 'train', hml_mode)

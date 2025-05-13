@@ -47,4 +47,5 @@ python -m sample.generate --model_path ./save/wlasl100_ckp_02.03_text/model00040
 
 
 
+python -m sample.generate --model_path ./save/wlasl100_ckpt_final/model000400000.pt --num_repetitions 5 --text_prompt "paper"
 
