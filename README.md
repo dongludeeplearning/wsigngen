@@ -58,13 +58,9 @@ pip install git+https://github.com/openai/CLIP.git
 
 Download dependencies:
 
-<details>
-  <summary><b>Text to Motion</b></summary>
-
 ```bash
 bash prepare/download_smplx_files.sh
 ```
-</details>
 
 
 ### 2. Get data
