@@ -11,7 +11,7 @@ Please visit our [**webpage**](https://dongludeeplearning.github.io/wSignGen.htm
 
 
 #### Bibtex
-If you find this code useful in your research, please cite:
+If you find this code useful in your research or use our dataset, please cite:
 
 ```
 @inproceedings{dong-etal-2024-word,
