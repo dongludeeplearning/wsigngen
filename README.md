@@ -14,20 +14,12 @@ Please visit our [**webpage**](https://dongludeeplearning.github.io/wSignGen.htm
 If you find this code useful in your research or use our dataset, please cite:
 
 ```
-@inproceedings{dong-etal-2024-word,
-    title = "Word-Conditioned 3{D} {A}merican {S}ign {L}anguage Motion Generation",
-    author = "Dong, Lu  and Wang, Xiao  and Nwogu, Ifeoma",
-    editor = "Al-Onaizan, Yaser  and  Bansal, Mohit  and Chen, Yun-Nung",
-    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2024",
-    month = nov,
-    year = "2024",
-    address = "Miami, Florida, USA",
-    publisher = "Association for Computational Linguistics",
-    url = "https://aclanthology.org/2024.findings-emnlp.584/",
-    doi = "10.18653/v1/2024.findings-emnlp.584",
-    pages = "9993--9999"
+@inproceedings{dong2024word,
+  title={Word-Conditioned 3D American Sign Language Motion Generation},
+  author={Dong, Lu and Wang, Xiao and Nwogu, Ifeoma},
+  year={2024},
+  organization={Association for Computational Linguistics}
 }
-
 
 
 @inproceedings{dong2024signavatar,
