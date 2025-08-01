@@ -27,9 +27,18 @@ If you find this code useful in your research, please cite:
     doi = "10.18653/v1/2024.findings-emnlp.584",
     pages = "9993--9999"
 }
+
+
+
+@inproceedings{dong2024signavatar,
+  title={Signavatar: Sign language 3d motion reconstruction and generation},
+  author={Dong, Lu and Chaudhary, Lipisha and Xu, Fei and Wang, Xiao and Lary, Mason and Nwogu, Ifeoma},
+  booktitle={2024 IEEE 18th International Conference on Automatic Face and Gesture Recognition (FG)},
+  pages={1--10},
+  year={2024},
+  organization={IEEE}
+}
 ```
-
-
 ## Getting started
 
 This code was tested on `"Ubuntu 20.04.5 LTS` and requires:
@@ -155,6 +164,6 @@ python -m eval.eval_wsigngen --model ./save/wlasl100_ckpt_final/model000400000.p
 
 
 ## License
-This code is distributed under an [MIT LICENSE](LICENSE).
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
 
 Note that our code depends on other libraries, including MDM, CLIP, SMPL, SMPL-X, PyTorch3D, and uses datasets that each have their own respective licenses that must also be followed.
