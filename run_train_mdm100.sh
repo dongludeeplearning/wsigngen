@@ -3,7 +3,7 @@
 python -m train.train_mdm  \
     --save_dir save/wlasl100_ckp_05.11_text \
     --dataset wlasl_smplx100 \
-    --cond_mask_prob 0 \
+    --cond_mask_prob 0.1 \
     --lambda_rcxyz 0 \
     --lambda_vel 1 \
     --lambda_fc 1 \

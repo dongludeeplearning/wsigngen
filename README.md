@@ -33,7 +33,7 @@ If you find this code useful in your research or use our dataset, please cite:
 ```
 ## Getting started
 
-This code was tested on `"Ubuntu 20.04.5 LTS` and requires:
+This code was tested on `"Ubuntu 20.04.5 LTS"` and requires:
 
 * Python 3.7
 * conda3 or miniconda3
@@ -57,29 +57,31 @@ python -m spacy download en_core_web_sm
 pip install git+https://github.com/openai/CLIP.git
 ```
 
-Download dependencies:
+## Download SMPLX Models and Datasets
 
 ```bash
-bash prepare/download_smplx_files.sh
+Required files in body_models/smplx/:
+ - SMPLX_NEUTRAL.npz files 
+ - kin_pose53_smplx.pkl 
+
+# Download SMPLX_NEUTRAL from: https://smpl-x.is.tue.mpg.de/
+# kin_pose53_smplx.pkl file have been updated
 ```
 
+## 2. Get data and pretrained models
 
-## 2. Get data
-
-
-Check the follow link to get the dataset:
+Check the follow link to get the frame-level dataset:
 [wSignGen dataset google drive](https://drive.google.com/drive/folders/1pncvvaxr1UXPBg6ewG225wrPoGEZbTd1?usp=sharing) 
 
 
-
-## 3. Download the pretrained models
-
-Download the pre-trained model, then unzip and place them in `./save/`. 
+Download the pre-trained diffusion model, then unzip and place them in `./save/`. 
 [wSignGen diffusion pre-trained google drive](https://drive.google.com/drive/folders/1ytuImcAKg78WdnPo5NQRbbP6_ns1hooW?usp=sharing) 
 
+The recognition model (STGCN checkpoint) have been uploaded in assets/actionrecognition/
 
-## 4. Sign Motion Synthesis
+If you want to know more details about the STGCN model training, please check the the following [link:](https://github.com/dongludeeplearning/SignAvatar) 
 
+## 3. Sign Motion Synthesis
 
 ### Generate from test set prompts
 
