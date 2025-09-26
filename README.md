@@ -70,7 +70,7 @@ Required files in body_models/smplx/:
 
 ## 2. Get data and pretrained models
 
-Check the follow link to get the frame-level dataset:
+Check the follow link to get the dataset:
 [wSignGen dataset google drive](https://drive.google.com/drive/folders/1pncvvaxr1UXPBg6ewG225wrPoGEZbTd1?usp=sharing) 
 
 
