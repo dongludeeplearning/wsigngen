@@ -138,8 +138,8 @@ cython_debug/
 
 
 # add our folder 
-assets/actionrecognition/
-assets/
+# assets/actionrecognition/
+# assets/
 body_models/smpl
 body_models/smplx
 dataset/
